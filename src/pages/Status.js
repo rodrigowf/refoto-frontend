@@ -9,7 +9,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
-import FolderIcon from "@material-ui/icons/Photo";
+import PhotoIcon from "@material-ui/icons/Photo";
 
 
 const status_url = 'http://refoto.appspot.com/get_status';
@@ -32,31 +32,38 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function useProgress(myFileKey, currentFileKey, currentProgress) {
-    const [myProgress, setMyProgress] = useState(0);
+function useProgress(filesList, currentFileKey, currentProgress) {
+    const [progressArray, setProgressArray] = useState([]);
 
     useEffect(() => {
-        if(currentFileKey < myFileKey) {
-            setMyProgress(0);
-        } else if(currentFileKey > myFileKey) {
-            setMyProgress(100);
-        } else if(currentFileKey === myFileKey) {
-            setMyProgress(currentProgress);
-        }
+        let progArr = [];
+        filesList.map((item, key) => {
+            if(currentFileKey < key) {
+                progArr.push(0);
+            } else if(currentFileKey > key) {
+                progArr.push(100);
+            } else if(currentFileKey === key) {
+                progArr.push(currentProgress);
+            }
+        });
+        setProgressArray(progArr);
     }, [currentFileKey, currentProgress]);
 
-    return myProgress;
+    return progressArray;
 }
 
 
 function Status() {
     const [filesList,   setFilesList]   = useState([]);
     const [folderName,  setFolderName]  = useState('');
-    const [currentFile, setCurrentFile] = useState([]);
+    const [currentFile, setCurrentFile] = useState(0);
     const [progress,    setProgress]    = useState(0);
 
     const classes = useStyles();
     let history = useHistory();
+
+    const progressArr = useProgress(filesList, currentFile, progress);
+
 
     function getFileList() {
         axios.get(filelist_url, http_conf)
@@ -77,6 +84,7 @@ function Status() {
     useEffect(() => {
         getFileList();
     }, []);
+
 
     function getStatus() {
         axios.get(status_url, http_conf)
@@ -112,6 +120,7 @@ function Status() {
             })
     }
 
+
     return (
         <div className={classes.root}>
             <Typography variant="h4">
@@ -127,10 +136,10 @@ function Status() {
                         key={item.id}
                     >
                         <ListItemIcon>
-                            <FolderIcon />
+                            <PhotoIcon />
                         </ListItemIcon>
                         <ListItemText primary={item.name} />
-                        <LinearProgress variant="determinate" value={useProgress(key, currentFile, progress)} />
+                        <LinearProgress variant="determinate" value={progressArr[key]} />
                     </ListItem>
                 ))}
             </List>

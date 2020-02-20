@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
+import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
+import axios from "axios";
 import { Box, Button } from "@material-ui/core";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import axios from "axios";
 
 const backend_url = 'http://refoto.appspot.com/do_authorize';
 const status_url = 'http://refoto.appspot.com/get_status';
@@ -43,6 +44,7 @@ const useStyles = makeStyles(theme => ({
 
 function Home() {
     const classes = useStyles();
+    let history = useHistory();
 
     useEffect(()=>{testStatus()}, []);
 
