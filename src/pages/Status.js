@@ -12,9 +12,9 @@ import List from "@material-ui/core/List";
 import PhotoIcon from "@material-ui/icons/Photo";
 
 
-const status_url = 'http://refoto.appspot.com/get_status';
-const filelist_url = 'http://refoto.appspot.com/get_filelist';
-const cancel_url = 'http://refoto.appspot.com/cancel_processing';
+const status_url = 'https://refoto.appspot.com/get_status';
+const filelist_url = 'https://refoto.appspot.com/get_filelist';
+const cancel_url = 'https://refoto.appspot.com/cancel_processing';
 
 const http_conf = {
     withCredentials: true,

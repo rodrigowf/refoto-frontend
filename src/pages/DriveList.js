@@ -11,8 +11,8 @@ import Button from '@material-ui/core/Button';
 import FolderIcon from '@material-ui/icons/Folder';
 
 
-const getContent_url = 'http://refoto.appspot.com/list_drive_files';
-const process_url = 'http://refoto.appspot.com/process_folder';
+const getContent_url = 'https://refoto.appspot.com/list_drive_files';
+const process_url = 'https://refoto.appspot.com/process_folder';
 
 const http_conf = {
     withCredentials: true,
