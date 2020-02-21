@@ -12,9 +12,9 @@ import List from "@material-ui/core/List";
 import PhotoIcon from "@material-ui/icons/Photo";
 
 
-const status_url = 'https://refoto.appspot.com/get_status';
-const filelist_url = 'https://refoto.appspot.com/get_filelist';
-const cancel_url = 'https://refoto.appspot.com/cancel_processing';
+const status_url = '/get_status';
+const filelist_url = '/get_filelist';
+const cancel_url = '/cancel_processing';
 
 const http_conf = {
     withCredentials: true,
@@ -72,8 +72,13 @@ function Status() {
                 if (result.running === 'False') {
                     history.push("/");
                 } else if (result.running === 'True') {
-                    setFolderName(result.folder_name);
-                    setFilesList(result.files_list);
+                    if(Array.isArray(result.folder_name) && result.folder_name.length > 0) {
+                        setFolderName(result.folder_name);
+                        setFilesList(result.files_list);
+                    }
+                    else {
+                        setTimeout(()=>{getFileList()}, 500);
+                    }
                 }
             }).catch(function (error) {
                 // handle error

@@ -7,8 +7,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
-const backend_url = 'https://refoto.appspot.com/do_authorize';
-const status_url = 'https://refoto.appspot.com/get_status';
+const backend_url = '/do_authorize';
+const status_url = '/get_status';
 
 const http_conf = {
     withCredentials: true,
