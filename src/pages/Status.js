@@ -109,7 +109,10 @@ function Status() {
 
     useEffect(() => {
         getStatus();
-        setInterval(()=>{getStatus()}, 1000);
+        let inter = setInterval(()=>{getStatus()}, 1000);
+        return () => {
+            clearInterval(inter);
+        }
     }, []);
 
     function cancelOperation() {
