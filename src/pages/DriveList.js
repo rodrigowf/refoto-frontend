@@ -11,8 +11,10 @@ import Button from '@material-ui/core/Button';
 import FolderIcon from '@material-ui/icons/Folder';
 
 
-const getContent_url = '/list_drive_files';
-const process_url = '/process_folder';
+const base_url = 'http://35.222.209.134:8080';
+
+const getContent_url = base_url+'/list_drive_files';
+const process_url = base_url+'/process_folder';
 
 const http_conf = {
     withCredentials: true,

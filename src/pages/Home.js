@@ -7,8 +7,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
-const backend_url = '/do_authorize';
-const status_url = '/get_status';
+
+const base_url = 'http://35.222.209.134:8080';
+
+const backend_url = base_url+'/do_authorize';
+const status_url = base_url+'/get_status';
 
 const http_conf = {
     withCredentials: true,

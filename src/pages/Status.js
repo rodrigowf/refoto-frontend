@@ -12,9 +12,11 @@ import List from "@material-ui/core/List";
 import PhotoIcon from "@material-ui/icons/Photo";
 
 
-const status_url = '/get_status';
-const filelist_url = '/get_filelist';
-const cancel_url = '/cancel_processing';
+const base_url = 'http://35.222.209.134:8080';
+
+const status_url = base_url+'/get_status';
+const filelist_url = base_url+'/get_filelist';
+const cancel_url = base_url+'/cancel_processing';
 
 const http_conf = {
     withCredentials: true,
